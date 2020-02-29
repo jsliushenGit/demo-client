@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import axios from 'axios'
 
 function App() {
+  let [list, setList] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      const res = await axios.get('http://server.jsliushen.com/demo/users/list')
+      if (res && res.data && res.data.code === 200 && Array.isArray(res.data.data)) {
+        setList(res.data.data)
+      }
+    })()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ul>
+      {list.map(item => (
+        <li key={item.id}>{item.userName}-{item.age}</li>
+      ))}
+    </ul>
+  )
 }
 
 export default App;
