@@ -18,7 +18,7 @@ function App() {
     <ul>
       {
         list.map(item => (
-          <li key={item.id}>{item.userName}-{item.age}</li>
+          <li key={item.id}>{item.userName} - {item.age}</li>
         ))
       }
     </ul>
