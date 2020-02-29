@@ -16,9 +16,11 @@ function App() {
 
   return (
     <ul>
-      {list.map(item => (
-        <li key={item.id}>{item.userName}-{item.age}</li>
-      ))}
+      {
+        list.map(item => (
+          <li key={item.id}>{item.userName}-{item.age}</li>
+        ))
+      }
     </ul>
   )
 }
